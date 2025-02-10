@@ -12,6 +12,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(SheinAppConfig.class)
 public class SheinSdkAutoConfiguration {
+    /**
+     * get sheinOpenSDKClient instance
+     *
+     * @param config config
+     * @return sdkclient instance
+     */
     @Bean
     public SheinOpenSDKClient sheinOpenSDKClient(SheinAppConfig config) {
         return SheinOpenSDK.getInstance(config);

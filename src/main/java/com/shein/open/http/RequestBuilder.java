@@ -35,50 +35,98 @@ public class RequestBuilder {
      */
     private AuthInfo authInfo;
 
+    /**
+     * getMethod
+     * @return HttpMethodEnum
+     */
     public HttpMethodEnum getMethod() {
         return method;
     }
 
+    /**
+     * setMethod
+     * @param method method
+     */
     public void setMethod(HttpMethodEnum method) {
         this.method = method;
     }
 
+    /**
+     * getUrl
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * setUrl
+     * @param url url
+     */
     public void setUrl(String url) {
         this.url = url;
     }
 
+    /**
+     * getHeaders
+     * @return map
+     */
     public Map<String, String> getHeaders() {
         return headers;
     }
 
+    /**
+     * setHeaders
+     * @param headers headers
+     */
     public void setHeaders(Map<String, String> headers) {
         this.headers = headers;
     }
 
+    /**
+     * getQueryParams
+     * @return queryParams
+     */
     public Map<String, String> getQueryParams() {
         return queryParams;
     }
 
+    /**
+     * setQueryParams
+     * @param queryParams queryParams
+     */
     public void setQueryParams(Map<String, String> queryParams) {
         this.queryParams = queryParams;
     }
 
+    /**
+     * getBody
+     * @return body
+     */
     public String getBody() {
         return body;
     }
 
+    /**
+     * setBody
+     * @param body body
+     */
     public void setBody(String body) {
         this.body = body;
     }
 
+    /**
+     * getAuthInfo
+     * @return authInfo
+     */
     public AuthInfo getAuthInfo() {
         return authInfo;
     }
 
+    /**
+     * setAuthInfo
+     * @param authInfo authInfo
+     */
     public void setAuthInfo(AuthInfo authInfo) {
         this.authInfo = authInfo;
     }

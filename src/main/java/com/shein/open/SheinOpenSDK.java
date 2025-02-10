@@ -16,6 +16,11 @@ public final class SheinOpenSDK {
     private static volatile SheinOpenSDKClient instance;
     private static volatile SheinAppConfig config;
 
+    /**
+     * getInstance
+     * @param appConfig appConfig
+     * @return SheinOpenSDKClient
+     * */
     public static SheinOpenSDKClient getInstance(SheinAppConfig appConfig) {
         if (appConfig == null) {
             throw new IllegalArgumentException("Config cannot be null");

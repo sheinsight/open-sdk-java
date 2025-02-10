@@ -12,6 +12,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -35,6 +36,11 @@ public class HttpClientProxy implements AutoCloseable {
     private final SheinAppConfig config;
     private final CloseableHttpClient client;
 
+    /**
+     * build HttpClientProxy
+     *
+     * @param config config
+     */
     public HttpClientProxy(SheinAppConfig config) {
         this.config = config;
         // create connectionManager
@@ -56,6 +62,13 @@ public class HttpClientProxy implements AutoCloseable {
                 .build();
     }
 
+    /**
+     * doExecute
+     *
+     * @param requestBuilder requestBuilder
+     * @return STRING
+     * @throws OpenSdkException openSdkException
+     */
     public String doExecute(RequestBuilder requestBuilder) throws OpenSdkException {
         Assertions.notNull(requestBuilder.getAuthInfo(), "AuthInfo must not be null");
         String appid = requestBuilder.getAuthInfo().getAppid();
@@ -124,7 +137,17 @@ public class HttpClientProxy implements AutoCloseable {
         }
     }
 
-    private void addHeaders(org.apache.http.client.methods.HttpUriRequest request, String appid, String openKeyId, String timestamp, String signature, RequestBuilder requestBuilder) {
+    /**
+     * build Headers
+     *
+     * @param request        request
+     * @param appid          appid
+     * @param openKeyId      openKeyId
+     * @param timestamp      timestamp
+     * @param signature      signature
+     * @param requestBuilder requestBuilder
+     */
+    private void addHeaders(HttpUriRequest request, String appid, String openKeyId, String timestamp, String signature, RequestBuilder requestBuilder) {
         request.setHeader("x-lt-appid", appid);
         request.setHeader("x-lt-openKeyId", openKeyId);
         request.setHeader("x-lt-timestamp", timestamp);
@@ -137,7 +160,14 @@ public class HttpClientProxy implements AutoCloseable {
         }
     }
 
-
+    /**
+     * getByToken
+     *
+     * @param tempToken tempToken
+     * @param authInfo  authInfo
+     * @return token
+     * @throws OpenSdkException openSdkException
+     */
     public String getByToken(String tempToken, AuthInfo authInfo) throws OpenSdkException {
         Assertions.notNull(authInfo, "AuthInfo must not be null");
         Assertions.notBlank(tempToken, "The tempToken must not be blank");

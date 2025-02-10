@@ -12,6 +12,7 @@ public interface SheinOpenSDKClient {
      * get auth token
      *
      * @param tempToken tempToken
+     * @param authInfo authInfo
      * @return token object
      * @throws OpenSdkException If a request fails， throw an exception
      */
@@ -40,6 +41,7 @@ public interface SheinOpenSDKClient {
      * The secretKey obtained via the get-by-token interface is encrypted and needs to be decrypted before use.
      *
      * @param encryptedData encrypted data
+     * @param secretKey secretKey
      * @return SecretKey
      */
     String decryptSecretKey(String encryptedData, String secretKey);
@@ -49,6 +51,7 @@ public interface SheinOpenSDKClient {
      * The data in the webhook callback is encrypted and needs to be decrypted before it can be used.
      *
      * @param encryptedData encrypted data
+     * @param secretKey secretKey
      * @return EventData
      */
     String decryptEventData(String encryptedData, String secretKey);

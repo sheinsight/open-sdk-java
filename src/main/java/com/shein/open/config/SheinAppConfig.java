@@ -42,50 +42,98 @@ public class SheinAppConfig {
     private int maxConnections = 32;
 
 
+    /**
+     * getDomain
+     * @return string
+     */
     public String getDomain() {
         return domain;
     }
 
+    /**
+     * setDomain
+     * @param domain domain
+     */
     public void setDomain(String domain) {
         this.domain = domain;
     }
 
+    /**
+     * getConnectTimeoutMillis
+     * @return long
+     */
     public long getConnectTimeoutMillis() {
         return connectTimeoutMillis;
     }
 
+    /**
+     * setConnectTimeoutMillis
+     * @param connectTimeoutMillis connectTimeoutMillis
+     */
     public void setConnectTimeoutMillis(long connectTimeoutMillis) {
         this.connectTimeoutMillis = connectTimeoutMillis;
     }
 
+    /**
+     * getRequestTimeoutMillis
+     * @return long
+     */
     public long getRequestTimeoutMillis() {
         return requestTimeoutMillis;
     }
 
+    /**
+     * setRequestTimeoutMillis
+     * @param requestTimeoutMillis requestTimeoutMillis
+     */
     public void setRequestTimeoutMillis(long requestTimeoutMillis) {
         this.requestTimeoutMillis = requestTimeoutMillis;
     }
 
+    /**
+     * getResponseTimeoutMillis
+     * @return long
+     */
     public long getResponseTimeoutMillis() {
         return responseTimeoutMillis;
     }
 
+    /**
+     * setResponseTimeoutMillis
+     * @param responseTimeoutMillis responseTimeoutMillis
+     */
     public void setResponseTimeoutMillis(long responseTimeoutMillis) {
         this.responseTimeoutMillis = responseTimeoutMillis;
     }
 
+    /**
+     * isFollowRedirects
+     * @return boolean
+     */
     public boolean isFollowRedirects() {
         return followRedirects;
     }
 
+    /**
+     * setFollowRedirects
+     * @param followRedirects boolean
+     */
     public void setFollowRedirects(boolean followRedirects) {
         this.followRedirects = followRedirects;
     }
 
+    /**
+     * getMaxConnections
+     * @return int
+     */
     public int getMaxConnections() {
         return maxConnections;
     }
 
+    /**
+     * setMaxConnections
+     * @param maxConnections maxConnections
+     */
     public void setMaxConnections(int maxConnections) {
         this.maxConnections = maxConnections;
     }

@@ -17,6 +17,7 @@ public class SheinOpenSDKClientImpl implements SheinOpenSDKClient {
 
     /**
      * SheinOpenSDKClientImpl construct
+     * @param config config
      */
     public SheinOpenSDKClientImpl(SheinAppConfig config) {
         this.httpClient = new HttpClientProxy(config);
