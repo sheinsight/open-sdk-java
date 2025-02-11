@@ -6,12 +6,14 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * SignUtil
  */
 public class SignUtil {
-
+    private static final Logger log = Logger.getLogger(SignUtil.class.getName());
     private static final String HMAC_SHA256 = "HmacSHA256";
     private static final Integer RANDOM_LENGTH = 5;
 
@@ -41,7 +43,7 @@ public class SignUtil {
             byte[] bytes = mac.doFinal(message.getBytes());
             hash = byteArrayToHexString(bytes);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.log(Level.WARNING, "hmacSha256 failed", e);
         }
         return hash;
     }
