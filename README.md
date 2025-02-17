@@ -5,16 +5,14 @@ To facilitate external developers' access to the SHEIN Open Platform, the platfo
 
 1. Integration Methods
     1. Place the JAR file into the relevant directory of the project.
-    2. Include the necessary dependencies in the pom.xml file.
+       2. Include the necessary dependencies in the pom.xml file.
 
-        ```java
-         <dependency>
-                    <groupId>com.shein.open</groupId>
-                    <artifactId>shein-open-sdk</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                    <scope>system</scope>
-                    <systemPath>${pom.basedir}/src/main/resources/lib/shein-sdk-java-0.0.1-SNAPSHOT.jar</systemPath>
-                </dependency>
+       ``` java
+            <dependency>
+                <groupId>io.github.sheinsight</groupId>
+                <artifactId>shein-open-sdk</artifactId>
+                <version>0.0.1</version>
+            </dependency>
         ```
 
        3. Instance Registration(**It is recommended to instantiate sheinOpenSDKClient using the official method.**)
