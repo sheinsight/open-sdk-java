@@ -1,7 +1,7 @@
 # SHEIN Open Platform Java SDK
 
 [![Java Version](https://img.shields.io/badge/Java-8+-blue.svg)](https://www.oracle.com/java/)
-[![Maven Central](https://img.shields.io/badge/Maven-v0.0.1--RELEASE-green.svg)](#installation)
+[![Maven Central](https://img.shields.io/badge/Maven-v0.0.2-green.svg)](#installation)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 Official Java SDK for SHEIN Open Platform API integration. This SDK provides easy access to SHEIN's e-commerce APIs with built-in authentication, request signing, and data encryption/decryption capabilities.
@@ -20,16 +20,16 @@ Official Java SDK for SHEIN Open Platform API integration. This SDK provides eas
 
 ```xml
 <dependency>
-    <groupId>com.shein.open</groupId>
+    <groupId>io.github.sheinsight</groupId>
     <artifactId>shein-open-sdk</artifactId>
-    <version>0.0.1-RELEASE</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'com.shein.open:shein-open-sdk:0.0.1-RELEASE'
+implementation 'io.github.sheinsight:shein-open-sdk:0.0.2'
 ```
 
 ## Quick Start
