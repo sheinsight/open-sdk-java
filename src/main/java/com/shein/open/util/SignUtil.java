@@ -35,17 +35,16 @@ public class SignUtil {
     }
 
     private static String hmacSha256(String message, String secret) {
-        String hash = "";
         try {
             Mac mac = Mac.getInstance(HMAC_SHA256);
             SecretKeySpec secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), HMAC_SHA256);
             mac.init(secretKey);
             byte[] bytes = mac.doFinal(message.getBytes());
-            hash = byteArrayToHexString(bytes);
+            return byteArrayToHexString(bytes);
         } catch (Exception e) {
             log.log(Level.WARNING, "hmacSha256 failed", e);
+            throw new RuntimeException("HMAC-SHA256 signature calculation failed: " + e.getMessage(), e);
         }
-        return hash;
     }
 
     private static String byteArrayToHexString(byte[] b) {

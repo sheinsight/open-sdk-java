@@ -80,7 +80,7 @@ public class RequestBuilder {
      * @param headers headers
      */
     public void setHeaders(Map<String, String> headers) {
-        this.headers = headers;
+        this.headers = headers != null ? new HashMap<>(headers) : new HashMap<>();
     }
 
     /**
@@ -96,7 +96,7 @@ public class RequestBuilder {
      * @param queryParams queryParams
      */
     public void setQueryParams(Map<String, String> queryParams) {
-        this.queryParams = queryParams;
+        this.queryParams = queryParams != null ? new HashMap<>(queryParams) : new HashMap<>();
     }
 
     /**

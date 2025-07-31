@@ -6,7 +6,13 @@ package com.shein.open.model;
 
 public enum HttpMethodEnum {
 
+    /**
+     * get request
+     */
     GET("get request"),
+    /**
+     * post request
+     */
     POST("post request");
 
     private final String desc;
@@ -15,6 +21,11 @@ public enum HttpMethodEnum {
         this.desc = desc;
     }
 
+    /**
+     * getDesc
+     *
+     * @return string
+     */
     public String getDesc() {
         return desc;
     }

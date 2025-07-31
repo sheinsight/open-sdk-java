@@ -121,7 +121,7 @@ public class HttpClientProxy implements AutoCloseable {
                     HttpPost httpPost = new HttpPost(fullUrl);
                     addHeaders(httpPost, appid, openKeyId, timestamp, signature, requestBuilder);
                     if (requestBuilder.getBody() != null) {
-                        StringEntity entity = new StringEntity(requestBuilder.getBody(), "UTF-8");
+                        StringEntity entity = new StringEntity(requestBuilder.getBody(), StandardCharsets.UTF_8);
                         httpPost.setEntity(entity);
                     }
                     try (CloseableHttpResponse response = client.execute(httpPost)) {
@@ -190,7 +190,7 @@ public class HttpClientProxy implements AutoCloseable {
             httpPost.setHeader("Content-Type", "application/json");
 
             // Set body
-            StringEntity entity = new StringEntity(requestBody, "UTF-8");
+            StringEntity entity = new StringEntity(requestBody, StandardCharsets.UTF_8);
             httpPost.setEntity(entity);
 
             // Send Request and Receive Response
