@@ -22,6 +22,7 @@ public class AesUtil {
     private static final String UTF_8 = "utf-8";
     private static final String KEY_ALGORITHM = "AES";
     private static final int BLOCK_LENGTH = 128;
+    private static final Integer IV_LENGTH = 16;
     private static final String DEFAULT_CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final String DEFAULT_IV_SEED = "space-station-de";
 
@@ -30,20 +31,59 @@ public class AesUtil {
     }
 
     /**
-     * decrypt
-     * @param content content
-     * @param key key
+     * Decrypt data using default IV
+     * Uses a predefined IV seed for decryption. This method is suitable for
+     * decrypting data that was encrypted with the same default IV.
+     *
+     * @param content Base64 encoded encrypted content
+     * @param key     decryption key
+     * @return decrypted string, or null if decryption fails
      */
     public static String decrypt(String content, String key) {
         return decrypt(content, key, DEFAULT_IV_SEED.getBytes(StandardCharsets.UTF_8), false);
     }
 
     /**
-     * decrypt
-     * @param content content
-     * @param key key
-     * @param iv iv
-     * @param useSecureRandom useSecureRandom
+     * Decrypt response data with dynamic IV extraction
+     * This method is specifically designed for decrypting SHEIN gateway response data.
+     * The encrypted content contains the IV (Initialization Vector) in the first 16 bytes,
+     * followed by the actual encrypted data.
+     *
+     * @param content Base64 encoded encrypted content (IV + encrypted data)
+     * @param key     decryption key
+     * @return decrypted response string
+     * @throws IllegalArgumentException if content or key is null/empty, or if ciphertext format is invalid
+     */
+    public static String decryptResponse(String content, String key) {
+        if (content == null || content.isEmpty() || key == null || key.isEmpty()) {
+            throw new IllegalArgumentException("Ciphertext and key cannot be empty");
+        }
+        int ivLength = IV_LENGTH;
+        byte[] decode = Base64.getDecoder().decode(content);
+        if (decode.length <= ivLength) {
+            throw new IllegalArgumentException("Ciphertext Error");
+        } else {
+            byte[] ivBytes = new byte[ivLength];
+            byte[] realData = new byte[decode.length - ivLength];
+            System.arraycopy(decode, 0, ivBytes, 0, ivLength);
+            System.arraycopy(decode, ivLength, realData, 0, decode.length - ivLength);
+            return decrypt(Base64.getEncoder().encodeToString(realData), key, ivBytes);
+        }
+    }
+
+    private static String decrypt(String content, String key, byte[] ivBytes) {
+        return decrypt(content, key, ivBytes, false);
+    }
+
+    /**
+     * Decrypt data with custom IV and key generation options
+     * Core decryption method that supports both deterministic and secure random key generation.
+     *
+     * @param content         Base64 encoded encrypted content
+     * @param key             decryption key
+     * @param iv              initialization vector for CBC mode
+     * @param useSecureRandom whether to use secure random for key generation (false = deterministic)
+     * @return decrypted string, or null if decryption fails
      */
     public static String decrypt(String content, String key, byte[] iv, boolean useSecureRandom) {
         if (content == null || content.isEmpty() || key == null || key.isEmpty()) {
@@ -58,14 +98,18 @@ public class AesUtil {
             return new String(result, StandardCharsets.UTF_8);
         } catch (Exception ex) {
             log.log(Level.WARNING, "AES decryption failed", ex);
+            throw new RuntimeException("AES decryption failed: " + ex.getMessage(), ex);
         }
-        return null;
     }
 
     /**
-     * getSecretKey
-     * @param randomKey randomKey
-     * @param key key
+     * Generate AES secret key
+     * Creates a SecretKeySpec for AES encryption/decryption with two generation modes.
+     *
+     * @param key       the source key string
+     * @param randomKey true for secure random generation, false for deterministic generation
+     * @return SecretKeySpec for AES operations
+     * @throws RuntimeException if key generation fails
      */
     private static SecretKeySpec getSecretKey(final String key, boolean randomKey) {
         try {
@@ -81,8 +125,13 @@ public class AesUtil {
     }
 
     /**
-     * generateRandomSecretKey
-     * @param key key
+     * Generate secure random AES secret key
+     * Uses SHA1PRNG with key-based seeding to generate a cryptographically secure key.
+     * This provides better security than deterministic key derivation.
+     *
+     * @param key source key string used for seeding the random generator
+     * @return SecretKeySpec generated using secure random
+     * @throws Exception if key generation fails
      */
     private static SecretKeySpec generateRandomSecretKey(String key) throws Exception {
         KeyGenerator kg = KeyGenerator.getInstance(KEY_ALGORITHM);

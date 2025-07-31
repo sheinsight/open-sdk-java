@@ -55,4 +55,15 @@ public interface SheinOpenSDKClient {
      * @return EventData
      */
     String decryptEventData(String encryptedData, String secretKey);
+
+    /**
+     * decrypt response data
+     * All response data from SHEIN gateway calls are encrypted and need to be decrypted before use.
+     * This method provides a unified way to decrypt API response data from the SHEIN platform.
+     *
+     * @param encryptedResponse encrypted response data from gateway
+     * @param secretKey secret key for decryption
+     * @return decrypted response data
+     */
+    String decryptResponse(String encryptedResponse, String secretKey);
 }

@@ -51,4 +51,11 @@ public class SheinOpenSDKClientImpl implements SheinOpenSDKClient {
         Assertions.notBlank(appSecret, "appSecret not be blank");
         return AesUtil.decrypt(encryptedEventData, appSecret);
     }
+
+    @Override
+    public String decryptResponse(String encryptedResponse, String secretKey) {
+        Assertions.notBlank(encryptedResponse, "encryptedResponse not be blank");
+        Assertions.notBlank(secretKey, "secretKey not be blank");
+        return AesUtil.decryptResponse(encryptedResponse, secretKey);
+    }
 }

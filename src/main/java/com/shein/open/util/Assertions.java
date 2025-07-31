@@ -25,7 +25,7 @@ public final class Assertions {
      * @param message message
      */
     public static void notBlank(Object obj, String message) {
-        if (obj == null || "".equals(obj)) {
+        if (obj == null || "".equals(obj) || (obj instanceof String && ((String) obj).trim().isEmpty())) {
             throw new IllegalArgumentException(message);
         }
     }

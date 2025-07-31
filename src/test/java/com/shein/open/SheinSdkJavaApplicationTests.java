@@ -72,7 +72,7 @@ class SheinSdkJavaApplicationTests {
     @Test
     void decryptEventData() {
         // 🚨 WARNING: This is a TEST data, do NOT use it in production! 🚨
-        String eventData = "rgDgjyfcT6pNEW+A6LB23hvZGZ5EpE8DdF2jXgQjxln1CSzU8916ftvBn4wF1bnurJFZA1Qt2oGHAIOMqSKAng==";
+        String eventData = "k7S6rPbAXNt49tlZ76+owTUu/s6miBP8Dp60/FSiOXA=";
         // 🚨 WARNING: This is a TEST key, do NOT use it in production! 🚨
         String response = api.decryptEventData(eventData, "283598F3DEA847688A947DB2A54F5878");
         System.out.println(response);
@@ -87,4 +87,14 @@ class SheinSdkJavaApplicationTests {
         String response = api.decryptSecretKey(secretKey, "CD220D80B31E48A69FEC0FB6D7223421");
         System.out.println(response);
     }
+
+    @Test
+    void decryptResponse() throws OpenSdkException {
+        String body="fu+/vQLvv70Bbu+/vXjvv93y/bnh4FmYK9LIqmE/FwSJgX7n7QWMgkZnP8uWYwhp90bRfPAku+yLd4XgPNagGVaVuhO/3bYi7RrqEMVwRfNyj9ECayw7sIUumzseXr7fzfBkoiDpzOyExAUSCAOObZyVBmGw8A4CcZwkFe3XErN9kDLN8CJ2pKNt/XoXV17usdnUafFITR1AjELZhiAI7uis9e9jsZnb++ivBOx85SBO8AE/IDF0sBaZokZxnT/9mtQQLZtqbQTqCeo+rI2nFdB6bxDBcs/1T6Ivs83EdA+Il0RbKV5Gd0E2FwZKWMWOWiXGOpYwx1z9FX4RhZay6D9N+VbATZ8/fTvCm5SZ3Mz83wOWWxPxENuc567aS8w+PTLf8f+9twkRaYWBU7Q4o8bQnzL9qPcxETI7hquZp29UVqWaM3kx1n13Hvz25HC1wVu7j3eYE6SQubnfx0YPHcFmNCluSFLJnCNfKUXDsf8BhRWqD2yDQ0FkiU0tiXvBgEZAJ4wiUuxzZ7ddFMtCoZthv4Dx06FR5kzddSmyoVg2+A1FqP42w+i4FXhkb6j2o1SbmYLTk/zYN4l8hizZsOOEl9pCNc7KDbYz43NenR6G+NOLWe/mqtMd6OPzZEkvcDoAk2FkoM27wP8d61UUY0YEKtlPslFLNAiCVVM1LgaL6EuoWsHAthy4U0F1Rqsc";
+        // 🚨 WARNING: This is a TEST key, do NOT use it in production! 🚨
+        String response = api.decryptResponse(body, "64544A12A1F147A4A6A73534A125836A");
+        System.out.println(response);
+    }
+
+
 }

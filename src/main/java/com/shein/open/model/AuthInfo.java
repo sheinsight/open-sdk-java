@@ -111,6 +111,10 @@ public class AuthInfo {
         return openKeyId;
     }
 
+    /**
+     * getSecretKey
+     * @return secretKey
+     */
     public String getSecretKey() {
         return secretKey;
     }
