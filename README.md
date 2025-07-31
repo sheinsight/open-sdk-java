@@ -83,8 +83,8 @@ public class SheinApiService {
                 .withSecretKey("YOUR_SECRET_KEY");
         requestBuilder.setAuthInfo(authInfo);
         
-        String encryptedResponse = sheinOpenSDKClient.get(requestBuilder);
-        return sheinOpenSDKClient.decryptResponse(encryptedResponse, "YOUR_SECRET_KEY");
+        // API response is returned directly, no decryption needed
+        return sheinOpenSDKClient.get(requestBuilder);
     }
 }
 ```
@@ -123,9 +123,22 @@ public class SheinApiExample {
 | `getToken(String tempToken, AuthInfo authInfo)` | Exchange temporary token for permanent access credentials |
 | `get(RequestBuilder requestBuilder)` | Send GET requests to SHEIN Open Platform APIs |
 | `post(RequestBuilder requestBuilder)` | Send POST requests to SHEIN Open Platform APIs |
-| `decryptSecretKey(String encryptedData, String secretKey)` | Decrypt encrypted secret key from token exchange |
+| `decryptSecretKey(String encryptedData, String secretKey)` | Decrypt encrypted secret key from token exchange response |
 | `decryptEventData(String encryptedData, String secretKey)` | Decrypt webhook event callback data |
-| `decryptResponse(String encryptedResponse, String secretKey)` | Decrypt encrypted API response data from gateway |
+| `decryptResponse(String encryptedResponse, String secretKey)` | Decrypt encrypted data when SHEIN calls your endpoints |
+
+#### Usage Scenarios
+
+**When calling SHEIN APIs (you → SHEIN):**
+- Use `get()` and `post()` methods directly
+- API responses are returned as plain text, no decryption needed
+
+**When SHEIN calls your endpoints (SHEIN → you):**
+- Use `decryptEventData()` for webhook event notifications
+- Use `decryptResponse()` for other encrypted callback data
+
+**When exchanging tokens:**
+- Use `decryptSecretKey()` to decrypt the secret key from token exchange response
 
 #### RequestBuilder Configuration
 
@@ -266,8 +279,8 @@ public class SheinApiService {
                 .withSecretKey("您的密钥");
         requestBuilder.setAuthInfo(authInfo);
         
-        String encryptedResponse = sheinOpenSDKClient.get(requestBuilder);
-        return sheinOpenSDKClient.decryptResponse(encryptedResponse, "您的密钥");
+        // API响应直接返回，无需解密
+        return sheinOpenSDKClient.get(requestBuilder);
     }
 }
 ```
@@ -304,9 +317,22 @@ public class SheinApiExample {
 | `getToken(String tempToken, AuthInfo authInfo)` | 交换临时令牌获取永久访问凭证 |
 | `get(RequestBuilder requestBuilder)` | 向SHEIN开放平台API发送GET请求 |
 | `post(RequestBuilder requestBuilder)` | 向SHEIN开放平台API发送POST请求 |
-| `decryptSecretKey(String encryptedData, String secretKey)` | 解密令牌交换中的加密密钥 |
+| `decryptSecretKey(String encryptedData, String secretKey)` | 解密令牌交换响应中的加密密钥 |
 | `decryptEventData(String encryptedData, String secretKey)` | 解密webhook事件回调数据 |
-| `decryptResponse(String encryptedResponse, String secretKey)` | 解密网关返回的加密API响应数据 |
+| `decryptResponse(String encryptedResponse, String secretKey)` | 解密SHEIN主动调用您的接口时的加密数据 |
+
+#### 使用场景
+
+**当您调用SHEIN API时（您 → SHEIN）：**
+- 直接使用 `get()` 和 `post()` 方法
+- API响应以明文返回，无需解密
+
+**当SHEIN调用您的接口时（SHEIN → 您）：**
+- 使用 `decryptEventData()` 解密webhook事件通知数据
+- 使用 `decryptResponse()` 解密其他加密回调数据
+
+**当交换令牌时：**
+- 使用 `decryptSecretKey()` 解密令牌交换响应中的密钥
 
 ### 域名配置
 
