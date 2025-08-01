@@ -49,8 +49,8 @@ shein:
   open:
     sdk:
       # Choose the appropriate domain based on your business needs
-      # Available options: https://openapi.shein.com or https://openapi.shein.cn
-      domain: https://openapi.shein.com
+      # Available options: https://openapi.sheincorp.com or https://openapi.sheincorp.cn
+      domain: https://openapi.sheincorp.com
       connectTimeoutMillis: 10000
       requestTimeoutMillis: 10000
       responseTimeoutMillis: 10000
@@ -97,8 +97,8 @@ public class SheinApiExample {
         // Initialize configuration
         SheinAppConfig config = new SheinAppConfig();
         // Choose the appropriate domain based on your business needs
-        // Available options: https://openapi.shein.com or https://openapi.shein.cn
-        config.setDomain("https://openapi.shein.com");
+        // Available options: https://openapi.sheincorp.com or https://openapi.sheincorp.cn
+        config.setDomain("https://openapi.sheincorp.com");
         
         // Create SDK client
         SheinOpenSDKClient client = SheinOpenSDK.getInstance(config);
@@ -172,14 +172,14 @@ The SDK supports two domains. Choose the appropriate one based on your business 
 
 | Domain | URL |
 |--------|-----|
-| Domain 1 | `https://openapi.shein.com` |
-| Domain 2 | `https://openapi.shein.cn` |
+| Domain 1 | `https://openapi.sheincorp.com` |
+| Domain 2 | `https://openapi.sheincorp.cn` |
 
 ### Configuration Options
 
 | Property | Description | Default |
 |----------|-------------|---------|
-| `shein.open.sdk.domain` | SHEIN Open Platform API domain<br/>Options: `https://openapi.shein.com` or `https://openapi.shein.cn` | Required |
+| `shein.open.sdk.domain` | SHEIN Open Platform API domain<br/>Options: `https://openapi.sheincorp.com` or `https://openapi.sheincorp.cn` | Required |
 | `shein.open.sdk.connectTimeoutMillis` | Connection timeout in milliseconds | 10000 |
 | `shein.open.sdk.requestTimeoutMillis` | Request timeout in milliseconds | 10000 |
 | `shein.open.sdk.responseTimeoutMillis` | Response timeout in milliseconds | 10000 |
@@ -245,8 +245,8 @@ shein:
   open:
     sdk:
       # Choose the appropriate domain based on your business needs
-      # Available options: https://openapi.shein.com or https://openapi.shein.cn
-      domain: https://openapi.shein.com
+      # Available options: https://openapi.sheincorp.com or https://openapi.sheincorp.cn
+      domain: https://openapi.sheincorp.com
       connectTimeoutMillis: 10000
       requestTimeoutMillis: 10000
       responseTimeoutMillis: 10000
@@ -292,7 +292,7 @@ public class SheinApiExample {
     public static void main(String[] args) throws OpenSdkException {
         // 初始化配置
         SheinAppConfig config = new SheinAppConfig();
-        config.setDomain("https://openapi.shein.com");
+        config.setDomain("https://openapi.sheincorp.com");
         
         // 创建SDK客户端
         SheinOpenSDKClient client = SheinOpenSDK.getInstance(config);
@@ -340,14 +340,14 @@ SDK支持两个域名，请根据业务需求选择合适的域名：
 
 | 域名 | URL |
 |------|-----|
-| 域名1 | `https://openapi.shein.com` |
-| 域名2 | `https://openapi.shein.cn` |
+| 域名1 | `https://openapi.sheincorp.com` |
+| 域名2 | `https://openapi.sheincorp.cn` |
 
 ### 配置选项
 
 | 配置项 | 描述 | 默认值 |
 |--------|------|--------|
-| `shein.open.sdk.domain` | SHEIN开放平台API域名<br/>可选项: `https://openapi.shein.com` 或 `https://openapi.shein.cn` | 必填 |
+| `shein.open.sdk.domain` | SHEIN开放平台API域名<br/>可选项: `https://openapi.sheincorp.com` 或 `https://openapi.sheincorp.cn` | 必填 |
 | `shein.open.sdk.connectTimeoutMillis` | 连接超时时间（毫秒） | 10000 |
 | `shein.open.sdk.requestTimeoutMillis` | 请求超时时间（毫秒） | 10000 |
 | `shein.open.sdk.responseTimeoutMillis` | 响应超时时间（毫秒） | 10000 |
